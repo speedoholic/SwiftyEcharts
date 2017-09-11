@@ -25,7 +25,7 @@ public final class ThemeRiverOptions {
         return Option(
             .tooltip(Tooltip(
                 .trigger(.axis),
-                .axisPointer(Tooltip.AxisPointer(
+                .axisPointer(AxisPointerForTooltip(
                     .type(.line),
                     .lineStyle(LineStyle(
                         .color(.rgba(0, 0, 0, 0.2)),
@@ -132,8 +132,8 @@ public final class ThemeRiverOptions {
             .series([
                 ThemeRiverSerie(
                     .data(data),
-                    .label(FormattedLabel(
-                        .normal(FormattedLabelStyle(
+                    .label(EmphasisLabel(
+                        .normal(LabelStyle(
                             .show(false)
                             ))
                         ))

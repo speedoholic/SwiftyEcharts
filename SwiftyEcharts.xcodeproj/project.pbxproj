@@ -79,7 +79,6 @@
 		6F0E46241E61AB10008DA184 /* BarsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E46231E61AB10008DA184 /* BarsController.swift */; };
 		6F0E46261E61B204008DA184 /* BaseDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E46251E61B204008DA184 /* BaseDemoController.swift */; };
 		6F0E46281E61D6C6008DA184 /* PiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E46271E61D6C6008DA184 /* PiesController.swift */; };
-		6F1256A21F1A2C780051137C /* GeoSepc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1256A11F1A2C780051137C /* GeoSepc.swift */; };
 		6F1325701D9312A90006F114 /* SwiftyEcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F13256F1D9312A90006F114 /* SwiftyEcharts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F16492A1EF9150500592CE3 /* FunctionOrOthersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1649291EF9150500592CE3 /* FunctionOrOthersSpec.swift */; };
 		6F1ED0731E23DC0A00A1E154 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEBE921E2354B60021CB13 /* Option.swift */; };
@@ -117,14 +116,15 @@
 		6F4ACB511E21352600CE5FD5 /* MappableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4ACB501E21352600CE5FD5 /* MappableSpec.swift */; };
 		6F4BA30D1E92C543006A3AB3 /* PictorialBarsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4BA30C1E92C543006A3AB3 /* PictorialBarsController.swift */; };
 		6F4E6AB01ECDC8CD00E2858B /* USA.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E6AAF1ECDC8CD00E2858B /* USA.json */; };
-		6F57CE2C1EEEC99900143DD6 /* BarSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4003F1E2FC05E0086BF5B /* BarSerie.swift */; };
 		6F5469B71F109D0E00C66483 /* CandlestickSerieSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5469B61F109D0E00C66483 /* CandlestickSerieSpec.swift */; };
 		6F5469B91F10E0E200C66483 /* CircleGraphicSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5469B81F10E0E200C66483 /* CircleGraphicSpec.swift */; };
+		6F57CE2C1EEEC99900143DD6 /* BarSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4003F1E2FC05E0086BF5B /* BarSerie.swift */; };
 		6F5E2D1E1E4CB2E5009C4DA7 /* SingleAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E2D1D1E4CB2E5009C4DA7 /* SingleAxis.swift */; };
 		6F5E3AB71ED475FD008D4095 /* ScattersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E3AB61ED475FD008D4095 /* ScattersController.swift */; };
 		6F6331491EF6C6B400EC9D24 /* PositionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6331481EF6C6B400EC9D24 /* PositionSpec.swift */; };
 		6F63314B1EF6CBFA00EC9D24 /* FunctionOrOthers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F63314A1EF6CBFA00EC9D24 /* FunctionOrOthers.swift */; };
 		6F67FCB91E71CA1B00BE2E4B /* SelectedModeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67FCB81E71CA1B00BE2E4B /* SelectedModeSpec.swift */; };
+		6F6F17E01F5F0FFA0062ABEA /* MixZoomOnValue.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F17DF1F5F0FFA0062ABEA /* MixZoomOnValue.json */; };
 		6F715C9D1F1D0375001BA1A9 /* ImageGraphicSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F715C9C1F1D0375001BA1A9 /* ImageGraphicSpec.swift */; };
 		6F715C9F1F1D0882001BA1A9 /* InsideDataZoomSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F715C9E1F1D0882001BA1A9 /* InsideDataZoomSpec.swift */; };
 		6F715CA11F1E3E65001BA1A9 /* LegendSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F715CA01F1E3E65001BA1A9 /* LegendSpec.swift */; };
@@ -218,7 +218,6 @@
 		6FAE92891F1A416200CA58A9 /* GridSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAE92881F1A416200CA58A9 /* GridSpec.swift */; };
 		6FAE928B1F1B1F1600CA58A9 /* GroupGraphicSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAE928A1F1B1F1600CA58A9 /* GroupGraphicSpec.swift */; };
 		6FAE928D1F1B257600CA58A9 /* HeatmapSerieSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAE928C1F1B257600CA58A9 /* HeatmapSerieSpec.swift */; };
-		6FB400401E2FC05E0086BF5B /* BarSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4003F1E2FC05E0086BF5B /* BarSerie.swift */; };
 		6FB400421E2FC1DD0086BF5B /* CoordinateSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB400411E2FC1DD0086BF5B /* CoordinateSystem.swift */; };
 		6FB400441E3104B70086BF5B /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB400431E3104B70086BF5B /* Timeline.swift */; };
 		6FB400461E3657E00086BF5B /* VisualMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB400451E3657E00086BF5B /* VisualMap.swift */; };
@@ -380,6 +379,12 @@
 		6FDDCFFB1F00EC6300B89982 /* AxisTickSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDCFFA1F00EC6300B89982 /* AxisTickSpec.swift */; };
 		6FDDCFFD1F00F05F00B89982 /* AxisLineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDCFFC1F00F05F00B89982 /* AxisLineSpec.swift */; };
 		6FDDCFFF1F00F8FF00B89982 /* AxisLabelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDCFFE1F00F8FF00B89982 /* AxisLabelSpec.swift */; };
+		6FE1EE171F51453200DB0F1F /* TooltipSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1EE161F51453100DB0F1F /* TooltipSpec.swift */; };
+		6FE1EE191F51453200DB0F1F /* TreemapSerieSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1EE181F51453200DB0F1F /* TreemapSerieSpec.swift */; };
+		6FE1EE1A1F51453200DB0F1F /* GeoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FACFABC1EE99E43002622CE /* GeoSpec.swift */; };
+		6FE1EE1C1F51453200DB0F1F /* AxisPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1EE1B1F51453200DB0F1F /* AxisPointer.swift */; };
+		6FE1EE1E1F51453200DB0F1F /* AxisPointerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1EE1D1F51453200DB0F1F /* AxisPointerSpec.swift */; };
+		6FE1EE1F1F551CB100DB0F1F /* AxisPointer.swift in Headers */ = {isa = PBXBuildFile; fileRef = 6FE1EE1B1F51453200DB0F1F /* AxisPointer.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		6FE2DD321EAE56290028037A /* LineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2DD311EAE56290028037A /* LineSpec.swift */; };
 		6FE2DD341EB0F6EE0028037A /* FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2DD331EB0F6EE0028037A /* FormatterSpec.swift */; };
 		6FE45D501E6F092500E9083D /* GaugesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE45D4F1E6F092500E9083D /* GaugesController.swift */; };
@@ -447,7 +452,7 @@
 		541C72601E516D3900B194A3 /* TreemapSerie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TreemapSerie.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5427F07C1E2C8F4000CE20E5 /* LineOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LineOptions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5427F07E1E2C94FF00CE20E5 /* ScatterOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScatterOptions.swift; sourceTree = "<group>"; };
-		5427F0801E2C953700CE20E5 /* BarOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarOptions.swift; sourceTree = "<group>"; };
+		5427F0801E2C953700CE20E5 /* BarOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BarOptions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5427F0821E2C95CF00CE20E5 /* MapOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapOptions.swift; sourceTree = "<group>"; };
 		5427F0841E2C95D900CE20E5 /* PieOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PieOptions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5427F0881E2C96D700CE20E5 /* RadarOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarOptions.swift; sourceTree = "<group>"; };
@@ -460,7 +465,7 @@
 		5427F0961E2C981500CE20E5 /* SankeyOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SankeyOptions.swift; sourceTree = "<group>"; };
 		5427F0981E2C981F00CE20E5 /* FunnelOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunnelOptions.swift; sourceTree = "<group>"; };
 		5427F09A1E2C982900CE20E5 /* GaugeOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeOptions.swift; sourceTree = "<group>"; };
-		5427F09C1E2C983A00CE20E5 /* PictorialBarOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictorialBarOptions.swift; sourceTree = "<group>"; };
+		5427F09C1E2C983A00CE20E5 /* PictorialBarOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PictorialBarOptions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5427F09E1E2C984500CE20E5 /* ThemeRiverOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeRiverOptions.swift; sourceTree = "<group>"; };
 		5427F0AA1E2CEB8800CE20E5 /* MarkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MarkData.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5435CCBD1E24990B00D753B2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -481,7 +486,6 @@
 		54FEBE8E1E23480D0021CB13 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Mappable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		54FEBE921E2354B60021CB13 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Option.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6D32B0CF062FEBDAA551F7CE /* Pods-SwiftyEchartsTest_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyEchartsTest_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyEchartsTest_iOS/Pods-SwiftyEchartsTest_iOS.release.xcconfig"; sourceTree = "<group>"; };
-		696BE5C28327E91E69CEEFC8 /* Pods_SwiftyEchartsTest_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyEchartsTest_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F015AC61F3ACB7100A2576F /* SliderDataZoomSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderDataZoomSpec.swift; sourceTree = "<group>"; };
 		6F015AC81F3C6ECA00A2576F /* TextGraphicSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextGraphicSpec.swift; sourceTree = "<group>"; };
 		6F015ACA1F3DD70100A2576F /* ThemeRiverSerieSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeRiverSerieSpec.swift; sourceTree = "<group>"; };
@@ -504,7 +508,6 @@
 		6F0E46231E61AB10008DA184 /* BarsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarsController.swift; sourceTree = "<group>"; };
 		6F0E46251E61B204008DA184 /* BaseDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDemoController.swift; sourceTree = "<group>"; };
 		6F0E46271E61D6C6008DA184 /* PiesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiesController.swift; sourceTree = "<group>"; };
-		6F1256A11F1A2C780051137C /* GeoSepc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoSepc.swift; sourceTree = "<group>"; };
 		6F13256C1D9312A90006F114 /* SwiftyEcharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyEcharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F13256F1D9312A90006F114 /* SwiftyEcharts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyEcharts.h; sourceTree = "<group>"; };
 		6F1325711D9312A90006F114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -549,6 +552,7 @@
 		6F6331481EF6C6B400EC9D24 /* PositionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionSpec.swift; sourceTree = "<group>"; };
 		6F63314A1EF6CBFA00EC9D24 /* FunctionOrOthers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FunctionOrOthers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6F67FCB81E71CA1B00BE2E4B /* SelectedModeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedModeSpec.swift; sourceTree = "<group>"; };
+		6F6F17DF1F5F0FFA0062ABEA /* MixZoomOnValue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MixZoomOnValue.json; sourceTree = "<group>"; };
 		6F715C9C1F1D0375001BA1A9 /* ImageGraphicSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGraphicSpec.swift; sourceTree = "<group>"; };
 		6F715C9E1F1D0882001BA1A9 /* InsideDataZoomSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsideDataZoomSpec.swift; sourceTree = "<group>"; };
 		6F715CA01F1E3E65001BA1A9 /* LegendSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendSpec.swift; sourceTree = "<group>"; };
@@ -703,6 +707,10 @@
 		6FDDCFFA1F00EC6300B89982 /* AxisTickSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisTickSpec.swift; sourceTree = "<group>"; };
 		6FDDCFFC1F00F05F00B89982 /* AxisLineSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisLineSpec.swift; sourceTree = "<group>"; };
 		6FDDCFFE1F00F8FF00B89982 /* AxisLabelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisLabelSpec.swift; sourceTree = "<group>"; };
+		6FE1EE161F51453100DB0F1F /* TooltipSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TooltipSpec.swift; sourceTree = "<group>"; };
+		6FE1EE181F51453200DB0F1F /* TreemapSerieSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreemapSerieSpec.swift; sourceTree = "<group>"; };
+		6FE1EE1B1F51453200DB0F1F /* AxisPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisPointer.swift; sourceTree = "<group>"; };
+		6FE1EE1D1F51453200DB0F1F /* AxisPointerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisPointerSpec.swift; sourceTree = "<group>"; };
 		6FE2DD311EAE56290028037A /* LineSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSpec.swift; sourceTree = "<group>"; };
 		6FE2DD331EB0F6EE0028037A /* FormatterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterSpec.swift; sourceTree = "<group>"; };
 		6FE45D4F1E6F092500E9083D /* GaugesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugesController.swift; sourceTree = "<group>"; };
@@ -801,6 +809,7 @@
 				54371F0B1E8A3C7C008C3D22 /* ThemeRiverBasicData.plist */,
 				6FB9864E1ECBFC8A00D2EFE1 /* HK.json */,
 				6F4E6AAF1ECDC8CD00E2858B /* USA.json */,
+				6F6F17DF1F5F0FFA0062ABEA /* MixZoomOnValue.json */,
 			);
 			path = DemoOptions;
 			sourceTree = "<group>";
@@ -1137,7 +1146,6 @@
 				6F7F98DE1F1628DA00A31FF1 /* FunnelSerieSpec.swift */,
 				6F7F98E01F17B90D00A31FF1 /* EnumableSpec.swift */,
 				6F7F98E21F17BA5B00A31FF1 /* GaugeSerieSpec.swift */,
-				6F1256A11F1A2C780051137C /* GeoSepc.swift */,
 				6FAE92881F1A416200CA58A9 /* GridSpec.swift */,
 				6FAE928A1F1B1F1600CA58A9 /* GroupGraphicSpec.swift */,
 				6FAE928C1F1B257600CA58A9 /* HeatmapSerieSpec.swift */,
@@ -1177,6 +1185,9 @@
 				6F015ACC1F3DE02700A2576F /* TimelineSpec.swift */,
 				6F015ACE1F3EFD2C00A2576F /* TitleSpec.swift */,
 				6F015AD01F3F7A5E00A2576F /* ToolboxSpec.swift */,
+				6FE1EE161F51453100DB0F1F /* TooltipSpec.swift */,
+				6FE1EE181F51453200DB0F1F /* TreemapSerieSpec.swift */,
+				6FE1EE1D1F51453200DB0F1F /* AxisPointerSpec.swift */,
 			);
 			path = SwiftyEchartsTest_iOS;
 			sourceTree = "<group>";
@@ -1211,6 +1222,7 @@
 				6FC40CF51E48C13200F6E62F /* AngleAxis.swift */,
 				6FC40CFD1E4CB22900F6E62F /* ParallelAxis.swift */,
 				6F5E2D1D1E4CB2E5009C4DA7 /* SingleAxis.swift */,
+				6FE1EE1B1F51453200DB0F1F /* AxisPointer.swift */,
 			);
 			path = Axis;
 			sourceTree = "<group>";
@@ -1346,6 +1358,7 @@
 				6FD1B1961E9EB457009FC0D9 /* Target.swift in Headers */,
 				6FC28C711E9D37EC00B79049 /* Color.swift in Headers */,
 				6FC28C6C1E9D37D700B79049 /* Brush.swift in Headers */,
+				6FE1EE1F1F551CB100DB0F1F /* AxisPointer.swift in Headers */,
 				6FC28C6D1E9D37D700B79049 /* Geo.swift in Headers */,
 				6FC28C6E1E9D37D700B79049 /* Parallel.swift in Headers */,
 				6F1325701D9312A90006F114 /* SwiftyEcharts.h in Headers */,
@@ -1507,6 +1520,7 @@
 				6FA85F2A1ED336E300C1DA58 /* beijing.json in Resources */,
 				6FA85F3F1ED336E300C1DA58 /* shanghai.json in Resources */,
 				6FA85F3D1ED336E300C1DA58 /* qinghai.json in Resources */,
+				6F6F17E01F5F0FFA0062ABEA /* MixZoomOnValue.json in Resources */,
 				6FA85F281ED336E300C1DA58 /* anhui.json in Resources */,
 				6FA85F3B1ED336E300C1DA58 /* neimenggu.json in Resources */,
 				6F9B70E51DE808E600406B55 /* Main.storyboard in Resources */,
@@ -1628,6 +1642,7 @@
 				6FC40CEA1E48BDCF00F6E62F /* AxisType.swift in Sources */,
 				6FC40CF21E48C06F00F6E62F /* SplitArea.swift in Sources */,
 				6FC40CFA1E4CB1DF00F6E62F /* Geo.swift in Sources */,
+				6FE1EE1C1F51453200DB0F1F /* AxisPointer.swift in Sources */,
 				6FD249E21E50B69A00FBB2F7 /* ArcGraphic.swift in Sources */,
 				6FB400461E3657E00086BF5B /* VisualMap.swift in Sources */,
 				54FEBE8F1E23480D0021CB13 /* Jsonable.swift in Sources */,
@@ -1740,6 +1755,7 @@
 				6F67FCB91E71CA1B00BE2E4B /* SelectedModeSpec.swift in Sources */,
 				6F715CA11F1E3E65001BA1A9 /* LegendSpec.swift in Sources */,
 				6F86CFCA1EFC17D1006099D3 /* SplitLineSpec.swift in Sources */,
+				6FE1EE1A1F51453200DB0F1F /* GeoSpec.swift in Sources */,
 				6F824E6B1F2F8DBF00876D04 /* PolarSpec.swift in Sources */,
 				6F201F101F0A587E00087764 /* BezierCurveGraphicSpec.swift in Sources */,
 				6FDDCFF51F00E4A500B89982 /* MarkDataTypeSpec.swift in Sources */,
@@ -1765,6 +1781,7 @@
 				6F0AB1C11F318B7700A71D9A /* PolylineGraphicSpec.swift in Sources */,
 				6F201EDC1F0230C400087764 /* ArcGraphicSpec.swift in Sources */,
 				6FEF717E1E686EB700E1ED70 /* ColorSpec.swift in Sources */,
+				6FE1EE1E1F51453200DB0F1F /* AxisPointerSpec.swift in Sources */,
 				6F715CA51F20AEA9001BA1A9 /* LineSerieSpec.swift in Sources */,
 				6F715CA91F2327ED001BA1A9 /* MapSerieSpec.swift in Sources */,
 				6F824E691F2C806F00876D04 /* PieSerieSpec.swift in Sources */,
@@ -1791,6 +1808,7 @@
 				6F5469B91F10E0E200C66483 /* CircleGraphicSpec.swift in Sources */,
 				6F201ED81F02094B00087764 /* GraphicTypeSpec.swift in Sources */,
 				6FAE928B1F1B1F1600CA58A9 /* GroupGraphicSpec.swift in Sources */,
+				6FE1EE191F51453200DB0F1F /* TreemapSerieSpec.swift in Sources */,
 				6F86CFC61EFAD921006099D3 /* SerieSpec.swift in Sources */,
 				6FDDCFFB1F00EC6300B89982 /* AxisTickSpec.swift in Sources */,
 				6F98F1B91F289B79006DC141 /* MarkPointSpec.swift in Sources */,
@@ -1812,7 +1830,6 @@
 				6FA9DB261E59FA6A00CE5277 /* OneOrMoreSepc.swift in Sources */,
 				6F715C9D1F1D0375001BA1A9 /* ImageGraphicSpec.swift in Sources */,
 				6F824E671F2C710000876D04 /* PiecewiseVisualMapSpec.swift in Sources */,
-				6F1256A21F1A2C780051137C /* GeoSepc.swift in Sources */,
 				6F7F98DD1F12299100A31FF1 /* EffectScatterSerieSpec.swift in Sources */,
 				6FB48CBA1DEEA30000137D13 /* FontSpec.swift in Sources */,
 				6F98F1BB1F28DE6E006DC141 /* ParallelAxisSpec.swift in Sources */,
@@ -1820,6 +1837,7 @@
 				6FDDCFFF1F00F8FF00B89982 /* AxisLabelSpec.swift in Sources */,
 				6FDDCFF91F00E74E00B89982 /* VisualMapSpec.swift in Sources */,
 				6F0AB1CF1F36D52400A71D9A /* RectGraphicSpec.swift in Sources */,
+				6FE1EE171F51453200DB0F1F /* TooltipSpec.swift in Sources */,
 				6F0AB1D11F36DAC700A71D9A /* RingGraphicSpec.swift in Sources */,
 				6FACFAC11EEAF62B002622CE /* ItemStyleSpec.swift in Sources */,
 				6F0AB1D61F38EE7900A71D9A /* ScatterSerieSpec.swift in Sources */,

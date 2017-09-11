@@ -88,7 +88,6 @@
 /// ECharts 3 和 ECharts 2 相比，timeline 属性的定义位置有所不同，移到了 baseOption 中，统一作为一个普通的组件看待。但是，仍然兼容 ECharts2 的 timeline 定义位置，只是不再推荐这样写。
 public final class Timeline: Displayable, Symbolized, Zable {
     
-    
     public final class CheckpointStyle: Symbolized, Colorful, Borderable {
         /// timeline.checkpointStyle 标记的图形。
         public var symbol: OneOrMore<Symbol>?
@@ -249,7 +248,7 @@ public final class Timeline: Displayable, Symbolized, Zable {
     /// 线条样式
     public var lineStyle: LineStyle?
     /// 轴的文本标签。有 normal 和 emphasis 两个状态，normal 是文本正常的样式，emphasis 是文本高亮的样式，比如鼠标悬浮或者图例联动高亮的时候会使用 emphasis 作为文本的样式。
-    //    public var label: // FIXME?
+    public var label: EmphasisLabel?
     /// timeline 图形样式，有 normal 和 emphasis 两个状态。normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
     public var itemStyle: ItemStyle?
     /// 『当前项』（checkpoint）的图形样式。
@@ -440,7 +439,7 @@ extension Timeline.Data: Mappable {
 
 extension Timeline: Enumable {
     public enum Enums {
-        case show(Bool), axisType(AxisType), current(UInt), autoPlay(Bool), rewind(Bool), loop(Bool), playInterval(Float), realtime(Bool), controlPosition(String), zlevel(Float), z(Float), left(Position), top(Position), right(Position), bottom(Position), padding(Padding), orient(Orient), inverse(Bool), symbol(Symbol), symbolSize(FunctionOrFloatOrPair), symbolRotate(Float), symbolOffset(Point), lineStyle(LineStyle), itemStyle(ItemStyle), checkpointStyle(CheckpointStyle), controlStyle(ControlStyle), data([Jsonable])
+        case show(Bool), axisType(AxisType), current(UInt), autoPlay(Bool), rewind(Bool), loop(Bool), playInterval(Float), realtime(Bool), controlPosition(String), zlevel(Float), z(Float), left(Position), top(Position), right(Position), bottom(Position), padding(Padding), orient(Orient), inverse(Bool), symbol(Symbol), symbolSize(FunctionOrFloatOrPair), symbolRotate(Float), symbolOffset(Point), lineStyle(LineStyle), label(EmphasisLabel), itemStyle(ItemStyle), checkpointStyle(CheckpointStyle), controlStyle(ControlStyle), data([Jsonable])
     }
     
     public typealias ContentEnum = Enums
@@ -495,6 +494,8 @@ extension Timeline: Enumable {
                 self.symbolOffset = symbolOffset
             case let .lineStyle(lineStyle):
                 self.lineStyle = lineStyle
+            case let .label(label):
+                self.label = label
             case let .itemStyle(itemStyle):
                 self.itemStyle = itemStyle
             case let .checkpointStyle(checkpointStyle):
@@ -534,6 +535,7 @@ extension Timeline: Mappable {
         map["symbolRotate"] = symbolRotate
         map["symbolOffset"] = symbolOffset
         map["lineStyle"] = lineStyle
+        map["label"] = label
         map["itemStyle"] = itemStyle
         map["checkpointStyle"] = checkpointStyle
         map["controlStyle"] = controlStyle

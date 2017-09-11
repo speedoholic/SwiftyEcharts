@@ -12,6 +12,90 @@ import Nimble
 
 class TimelineSpec: QuickSpec {
     override func spec() {
+        
+        beforeEach {
+            Mapper.ignoreNil = true
+        }
+        
+        let positionLabelStyleValue = Position.center
+        let showLabelStyleValue = false
+        let intervalLabelStyleValue: UInt8 = 44
+        let rotateLabelStyleValue: Float = 3874.92
+        let formatterLabelStyleValue = Formatter.string("labelStyleFormatterValue")
+        let colorLabelStyleValue = Color.hexColor("876543")
+        let fontStyleLabelStyleValue = FontStyle.oblique
+        let fontWeightLabelStyleValue = FontWeight.lighter
+        let fontFamilyLabelStyleValue = "Arial"
+        let fontSizeLabelStyleValue: UInt = 18
+        let alignLabelStyleValue = Align.none
+        let verticalAlignLabelStyleValue = VerticalAlign.bottom
+        let lineHeightLabelStyleValue: Float = 85723.1
+        let backgroundColorLabelStyleValue = Color.rgb(76, 12, 45)
+        let borderColorLabelStyleValue = Color.yellow
+        let borderWidthLabelStyleValue: Float = 0
+        let borderRadiusLabelStyleValue: Float = 2.0
+        let paddingLabelStyleValue = Padding.trbl(0, 0, 20, 10)
+        let shadowColorLabelStyleValue = Color.transparent
+        let shadowBlurLabelStyleValue: Float = 2.0
+        let shadowOffsetXLabelStyleValue: Float = 10.0
+        let shadowOffsetYLabelStyleValue: Float = 857234.4
+        let widthLabelStyleValue = 20%
+        let heightLabelStyleValue = 80%
+        let textBorderColorLabelStyleValue = Color.auto
+        let textBorderWidthLabelStyleValue: Float = 5.0
+        let textShadowColorLabelStyleValue = Color.blue
+        let textShadowBlurLabelStyleValue: Float = 8572
+        let textShadowOffsetXLabelStyleValue: Float = 4444444
+        let textShadowOffsetYLabelStyleValue: Float = 0.11111111111
+        let richLabelStyleValue: [String: Jsonable] = ["key": "value1", "intkey": 28, "doubleKey": 84.28, "boolKey": false]
+        
+        let labelStyle = LabelStyle()
+        labelStyle.position = positionLabelStyleValue
+        labelStyle.show = showLabelStyleValue
+        labelStyle.interval = intervalLabelStyleValue
+        labelStyle.rotate = rotateLabelStyleValue
+        labelStyle.formatter = formatterLabelStyleValue
+        labelStyle.color = colorLabelStyleValue
+        labelStyle.fontStyle = fontStyleLabelStyleValue
+        labelStyle.fontWeight = fontWeightLabelStyleValue
+        labelStyle.fontFamily = fontFamilyLabelStyleValue
+        labelStyle.fontSize = fontSizeLabelStyleValue
+        labelStyle.align = alignLabelStyleValue
+        labelStyle.verticalAlign = verticalAlignLabelStyleValue
+        labelStyle.lineHeight = lineHeightLabelStyleValue
+        labelStyle.backgroundColor = backgroundColorLabelStyleValue
+        labelStyle.borderColor = borderColorLabelStyleValue
+        labelStyle.borderWidth = borderWidthLabelStyleValue
+        labelStyle.borderRadius = borderRadiusLabelStyleValue
+        labelStyle.padding = paddingLabelStyleValue
+        labelStyle.shadowColor = shadowColorLabelStyleValue
+        labelStyle.shadowBlur = shadowBlurLabelStyleValue
+        labelStyle.shadowOffsetX = shadowOffsetXLabelStyleValue
+        labelStyle.shadowOffsetY = shadowOffsetYLabelStyleValue
+        labelStyle.width = widthLabelStyleValue
+        labelStyle.height = heightLabelStyleValue
+        labelStyle.textBorderColor = textBorderColorLabelStyleValue
+        labelStyle.textBorderWidth = textBorderWidthLabelStyleValue
+        labelStyle.textShadowColor = textShadowColorLabelStyleValue
+        labelStyle.textShadowBlur = textShadowBlurLabelStyleValue
+        labelStyle.textShadowOffsetX = textShadowOffsetXLabelStyleValue
+        labelStyle.textShadowOffsetY = textShadowOffsetYLabelStyleValue
+        labelStyle.rich = richLabelStyleValue
+        
+        let normalLabelValue = labelStyle
+        let emphasisLabelValue = LabelStyle(
+            .show(false),
+            .position(Position.auto),
+            .fontStyle(FontStyle.oblique),
+            .fontWeight(FontWeight.bold),
+            .borderColor(Color.hexColor("#fedcba")),
+            .backgroundColor(Color.transparent)
+        )
+        
+        let label = EmphasisLabel()
+        label.normal = normalLabelValue
+        label.emphasis = emphasisLabelValue
+        
         let symbolCheckpointStyleOriginValue = Symbol.arrow
         let symbolCheckpointStyleValue = OneOrMore(one: symbolCheckpointStyleOriginValue)
         let symbolSizeCheckpointStyleValue = FunctionOrFloatOrPair.point([20, 20%])
@@ -177,7 +261,7 @@ class TimelineSpec: QuickSpec {
         let valueDataValue: Jsonable = 5.7346
         let tooltipDataValue = Tooltip(
             .trigger(.axis),
-            .axisPointer(Tooltip.AxisPointer(
+            .axisPointer(AxisPointerForTooltip(
                 .type(.shadow)
                 ))
         )
@@ -244,6 +328,7 @@ class TimelineSpec: QuickSpec {
                 .type(LineType.dotted),
                 .shadowBlur(75.37)
             )
+            let labelValue = label
             let itemStyleValue = ItemStyle(
                 .emphasis(CommonItemStyleContent(
                     .color(Color.yellow),
@@ -281,6 +366,7 @@ class TimelineSpec: QuickSpec {
             timeline.symbolRotate = symbolRotateValue
             timeline.symbolOffset = symbolOffsetValue
             timeline.lineStyle = lineStyleValue
+            timeline.label = labelValue
             timeline.itemStyle = itemStyleValue
             timeline.checkpointStyle = checkpointStyleValue
             timeline.controlStyle = controlStyleValue
@@ -312,6 +398,7 @@ class TimelineSpec: QuickSpec {
                     "symbolRotate": symbolRotateValue,
                     "symbolOffset": symbolOffsetValue,
                     "lineStyle": lineStyleValue,
+                    "label": labelValue,
                     "itemStyle": itemStyleValue,
                     "checkpointStyle": checkpointStyleValue,
                     "controlStyle": controlStyleValue,
@@ -346,6 +433,7 @@ class TimelineSpec: QuickSpec {
                     .symbolRotate(symbolRotateValue),
                     .symbolOffset(symbolOffsetValue),
                     .lineStyle(lineStyleValue),
+                    .label(labelValue),
                     .itemStyle(itemStyleValue),
                     .checkpointStyle(checkpointStyleValue),
                     .controlStyle(controlStyleValue),

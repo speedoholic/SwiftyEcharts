@@ -345,8 +345,8 @@ public final class RadarOptions {
                         RadarSerieData(
                             .value([120, 118, 130, 100, 99, 70]),
                             .name("张三"),
-                            .label(FormattedLabel(
-                                .normal(FormattedLabelStyle(
+                            .label(EmphasisLabel(
+                                .normal(LabelStyle(
                                     .show(true),
                                     .formatter(.function("function labelFormatter(params){ return params.value; }"))
                                     ))
@@ -358,7 +358,14 @@ public final class RadarOptions {
                             .areaStyle(EmphasisAreaStyle(
                                 .normal(CommonAreaStyleContent(
                                     .opacity(0.9),
-                                    .color(.red) // FIXME: 新类型？
+                                    .color(Color.radialGradient(0.5, 0.5, 1, [
+                                        GradientColorElement(
+                                            0, "#B8D3E4"
+                                        ),
+                                        GradientColorElement(
+                                            1, "#72ACD1"
+                                        )
+                                        ], false))
                                     ))
                                 ))
                         )
@@ -416,7 +423,8 @@ public final class RadarOptions {
                 )
                 ]),
             .series([
-                RadarSerie(// FIXME: 去掉两个属性
+                RadarSerie(// 好像itemStyle里面的设置没有作用
+                    .tooltip(Tooltip(.trigger(.item))),
                     .data([
                         RadarSerieData(
                             .value([60,73,85,40]),
@@ -437,7 +445,7 @@ public final class RadarOptions {
                         )
                         ])
                 ),
-                RadarSerie(// FIXME: 去掉一个属性
+                RadarSerie(// 好像itemStyle里面的设置没有作用
                     .radarIndex(2),
                     .data([
                         RadarSerieData(
@@ -507,7 +515,7 @@ public final class RadarOptions {
             series.append(RadarSerie(
                 .name("浏览器（数据纯属虚构）"),
                 .symbol(.none),
-                .lineStyle(EmphasisLineStyle( // FIXME: 网站里面用的是itemStyle里面的lineStyle，暂时还没实现
+                .lineStyle(EmphasisLineStyle( // itemStyle里面没有lineStyle， 而直接用外层的lineStyle即可
                     .normal(LineStyle(
                         .width(1)
                         ))

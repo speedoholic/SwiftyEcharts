@@ -26,7 +26,7 @@ public final class BarSerie: Serie, Animatable, Zable {
     /// 使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用。
     public var yAxisIndex: UInt8?
     /// 图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，label选项在 ECharts 2.x 中放置于itemStyle.normal下，在 ECharts 3 中为了让整个配置项结构更扁平合理，label 被拿出来跟 itemStyle 平级，并且跟 itemStyle 一样拥有 normal, emphasis 两个状态。
-    public var label: FormattedLabel?
+    public var label: EmphasisLabel?
     /// 图形样式，有 normal 和 emphasis 两个状态。normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
     public var itemStyle: ItemStyle?
     /// 数据堆叠，同个类目轴上系列配置相同的stack值可以堆叠放置。
@@ -47,7 +47,7 @@ public final class BarSerie: Serie, Animatable, Zable {
     public var barGap: LengthValue?
     /// 类目间柱形距离，默认为类目间距的20%，可设固定值
     /// 在同一坐标系上，此属性会被多个 'bar' 系列共享。此属性应设置于此坐标系中最后一个 'bar' 系列上才会生效，并且是对此坐标系中所有 'bar' 系列生效。
-    public var barCategoryGap: LengthValue? // FIXME: ??是否需要新类型
+    public var barCategoryGap: LengthValue?
     /// 数据
     public var data: [Jsonable]?
     /// 图表标注。
@@ -108,7 +108,7 @@ public final class BarSerie: Serie, Animatable, Zable {
 
 extension BarSerie: Enumable {
     public enum Enums {
-        case name(String), legendHoverLine(Bool), coordinateSystem(CoordinateSystem), xAxisIndex(UInt8), yAxisIndex(UInt8), label(FormattedLabel), itemStyle(ItemStyle), stack(String), barWidth(LengthValue), barMaxWidth(LengthValue), barMinHeight(Float), barGap(LengthValue), barCategoryGap(LengthValue), data([Jsonable]), markPoint(MarkPoint), markLine(MarkLine), markArea(MarkArea), zlevel(Float), z(Float), silent(Bool), animation(Bool), animationThreshold(Float), animationDuration(Time), animationEasing(EasingFunction), animationDelay(Time), animationDurationUpdate(Time), animationEasingUpdate(EasingFunction), animationDelayUpdate(Time)
+        case name(String), legendHoverLine(Bool), coordinateSystem(CoordinateSystem), xAxisIndex(UInt8), yAxisIndex(UInt8), label(EmphasisLabel), itemStyle(ItemStyle), stack(String), barWidth(LengthValue), barMaxWidth(LengthValue), barMinHeight(Float), barGap(LengthValue), barCategoryGap(LengthValue), data([Jsonable]), markPoint(MarkPoint), markLine(MarkLine), markArea(MarkArea), zlevel(Float), z(Float), silent(Bool), animation(Bool), animationThreshold(Float), animationDuration(Time), animationEasing(EasingFunction), animationDelay(Time), animationDurationUpdate(Time), animationEasingUpdate(EasingFunction), animationDelayUpdate(Time)
     }
     
     public typealias ContentEnum = Enums
