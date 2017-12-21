@@ -6,41 +6,41 @@
 //  Copyright © 2016 com.pluto-y. All rights reserved.
 //
 
-/// 触发类型。
-///
-/// - item: 数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
-/// - axis: 坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
-/// - Note: 在 ECharts 2.x 中只支持类目轴上使用 axis trigger，在 ECharts 3 中支持在直角坐标系和极坐标系上的所有类型的轴。并且可以通过 axisPointer.axis 指定坐标轴。
-public enum Trigger: String, Jsonable {
-    case item = "item"
-    case axis = "axis"
-    case none = "none"
+
+/// 提示框组件
+public final class Tooltip: Borderable, Displayable, Formatted, Jsonable {
     
-    public var jsonString: String {
-        return self.rawValue.jsonString
-    }
-    
-    /// 提示框触发的条件
+    /// 触发类型。
     ///
-    /// - mousemove: 鼠标移动时触发
-    /// - click: 鼠标点击时触发
-    /// - none: 不触发，用户可以通过 action.tooltip.showTip 和 action.tooltip.hideTip 来手动触发和隐藏。
-    /// - Note: 该属性为 ECharts 3.0 中新加。
-    public enum TriggerOn: String, Jsonable {
-        case mousemove = "mousemove"
-        case click = "click"
+    /// - item: 数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+    /// - axis: 坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    /// - Note: 在 ECharts 2.x 中只支持类目轴上使用 axis trigger，在 ECharts 3 中支持在直角坐标系和极坐标系上的所有类型的轴。并且可以通过 axisPointer.axis 指定坐标轴。
+    public enum Trigger: String, Jsonable {
+        case item = "item"
+        case axis = "axis"
         case none = "none"
         
         public var jsonString: String {
             return self.rawValue.jsonString
         }
+        
+        /// 提示框触发的条件
+        ///
+        /// - mousemove: 鼠标移动时触发
+        /// - click: 鼠标点击时触发
+        /// - none: 不触发，用户可以通过 action.tooltip.showTip 和 action.tooltip.hideTip 来手动触发和隐藏。
+        /// - Note: 该属性为 ECharts 3.0 中新加。
+        public enum TriggerOn: String, Jsonable {
+            case mousemove = "mousemove"
+            case click = "click"
+            case none = "none"
+            
+            public var jsonString: String {
+                return self.rawValue.jsonString
+            }
+        }
+        
     }
-    
-}
-
-/// 提示框组件
-public final class Tooltip: Borderable, Displayable, Formatted, Jsonable {
-    
     
     /// 是否显示提示框组件，包括提示框浮层和 axisPointer。
     /// - SeeAlso: `AxisPointer`
@@ -94,6 +94,8 @@ public final class Tooltip: Borderable, Displayable, Formatted, Jsonable {
     public init() { }
 }
 
+
+
 extension Tooltip: Enumable {
     public enum Enums {
         case show(Bool), showContent(Bool), trigger(Trigger), triggerOn(Trigger.TriggerOn), alwaysShowContent(Bool), showDelay(Float), hideDelay(Float), position(Position), confine(Bool), transitionDuration(Float), formatter(Formatter), backgroundColor(Color), borderColor(Color), borderWidth(Float), padding(Padding), textStyle(TextStyle), extraCssText(String), axisPointer(AxisPointerForTooltip)
@@ -146,7 +148,7 @@ extension Tooltip: Enumable {
 }
 
 extension Tooltip: Mappable {
-    public func mapping(_ map: Mapper) {
+    public func mapping(map: Mapper) {
         map["show"] = show
         map["showContent"] = showContent
         map["trigger"] = trigger
