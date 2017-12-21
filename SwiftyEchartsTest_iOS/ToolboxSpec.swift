@@ -820,5 +820,25 @@ class ToolboxSpec: QuickSpec {
                 expect(toolboxByEnums.jsonString).to(equal(toolbox.jsonString))
             }
         }
+        
+        context("For the action of Toolbox") {
+            describe("For ToolboxRestoreAction") {
+                let typeValue = EchartsActionType.restore
+                
+                let restoreAction = ToolboxRestoreAction()
+                
+                it("needs to check the typeValue") {
+                    expect(restoreAction.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue
+                    ]
+                    
+                    expect(restoreAction.jsonString).to(equal(resultDic.jsonString))
+                }
+            }
+        }
     }
 }

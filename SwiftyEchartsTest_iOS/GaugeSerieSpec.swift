@@ -12,85 +12,6 @@ import Nimble
 
 class GaugeSerieSpec: QuickSpec {
     override func spec() {
-        let showAxisTickValue = false
-        let splitNumberAxisTickValue: UInt8 = 20
-        let lengthAxisTickValue: LengthValue = 20%
-        let lineStyleAxisTickValue = LineStyle(
-            .width(8)
-        )
-        
-        let axisTick = GaugeSerie.AxisTick()
-        axisTick.show = showAxisTickValue
-        axisTick.splitNumber = splitNumberAxisTickValue
-        axisTick.length = lengthAxisTickValue
-        axisTick.lineStyle = lineStyleAxisTickValue
-        
-        describe("For GaugeSerie.AxisTick") {
-            it("needs to check the jsonString") {
-                let resultDic: [String: Jsonable] = [
-                    "show": showAxisTickValue,
-                    "splitNumber": splitNumberAxisTickValue,
-                    "length": lengthAxisTickValue,
-                    "lineStyle": lineStyleAxisTickValue
-                ]
-
-                expect(axisTick.jsonString).to(equal(resultDic.jsonString))
-            }
-
-            it("needs to check the Enumable") {
-                let axisTickByEnums = GaugeSerie.AxisTick(
-                    .show(showAxisTickValue),
-                    .splitNumber(splitNumberAxisTickValue),
-                    .length(lengthAxisTickValue),
-                    .lineStyle(lineStyleAxisTickValue)
-                )
-                
-                expect(axisTickByEnums.jsonString).to(equal(axisTick.jsonString))
-            }
-        }
-        
-        let showAxisLabelValue = true
-        let distanceAxisLabelValue: Float = 0.5
-        let formatterAxisLabelValue = Formatter.string("{value} ml")
-        let textStyleAxisLabelValue = TextStyle(
-            .color("#fff"),
-            .fontSize(16)
-        )
-        let colorAxisLabelValue = Color.hexColor("#5a5a5a")
-        
-        let axisLabel = GaugeSerie.AxisLabel()
-        axisLabel.show = showAxisLabelValue
-        axisLabel.distance = distanceAxisLabelValue
-        axisLabel.formatter = formatterAxisLabelValue
-        axisLabel.textStyle = textStyleAxisLabelValue
-        axisLabel.color = colorAxisLabelValue
-        
-        describe("For GaugeSerie.AxisLabel") {
-            it("needs to check the jsonString") {
-                let resutlDic: [String: Jsonable] = [
-                    "show": showAxisLabelValue,
-                    "distance": distanceAxisLabelValue,
-                    "formatter": formatterAxisLabelValue,
-                    "textStyle": textStyleAxisLabelValue,
-                    "color": colorAxisLabelValue
-                ]
-                
-                expect(axisLabel.jsonString).to(equal(resutlDic.jsonString))
-            }
-            
-            it("needs to check the Enumable") {
-                let axisLabelByEnums = GaugeSerie.AxisLabel(
-                    .show(showAxisLabelValue),
-                    .distance(distanceAxisLabelValue),
-                    .formatter(formatterAxisLabelValue),
-                    .textStyle(textStyleAxisLabelValue),
-                    .color(colorAxisLabelValue)
-                )
-                
-                expect(axisLabelByEnums.jsonString).to(equal(axisLabel.jsonString))
-            }
-        }
-        
         let showPointerValue = false
         let lengthPointerValue: LengthValue = 2.52
         let widthPointerValue: Float = 2.55
@@ -236,8 +157,22 @@ class GaugeSerieSpec: QuickSpec {
                 .show(false),
                 .interval(2)
             )
-            let axisTickValue = axisTick
-            let axisLabelValue = axisLabel
+            let axisTickValue = AxisTick(
+                .show(false),
+                .splitNumber(20),
+                .length(20%),
+                .lineStyle(LineStyle(
+                    .width(8)
+                    ))
+            )
+            let axisLabelValue = AxisLabel(
+                .show(false),
+                .distance(0.5),
+                .formatter(.string("{value} ml")),
+                .color("#fff"),
+                .fontSize(16),
+                .color("#5a5a5a")
+            )
             let pointerValue = pointer
             let itemStyleValue = ItemStyle(
                 .normal(CommonItemStyleContent(
@@ -295,6 +230,15 @@ class GaugeSerieSpec: QuickSpec {
             let animationDurationUpdateValue: Time = 0.0
             let animationEasingUpdateValue = EasingFunction.quarticInOut
             let animationDelayUpdateValue: Time = 100.0
+            let tooltipValue = Tooltip(
+                .position(.point([50%, 10])),
+                .formatter(.string("{b0}: {c0}<br />{b1}: {c1}")),
+                .backgroundColor(rgba(50, 50, 50, 0.7)),
+                .borderColor("#333"),
+                .borderWidth(0),
+                .padding(5),
+                .extraCssText("box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);")
+            )
             
             let gaugeSerie = GaugeSerie()
             gaugeSerie.name = nameValue
@@ -327,6 +271,7 @@ class GaugeSerieSpec: QuickSpec {
             gaugeSerie.animationDurationUpdate = animationDurationUpdateValue
             gaugeSerie.animationEasingUpdate = animationEasingUpdateValue
             gaugeSerie.animationDelayUpdate = animationDelayUpdateValue
+            gaugeSerie.tooltip = tooltipValue
             
             it("needs to check the type value") {
                 expect(gaugeSerie.type).to(equal(SerieType.gauge))
@@ -364,7 +309,8 @@ class GaugeSerieSpec: QuickSpec {
                     "animationDelay": animationDelayValue,
                     "animationDurationUpdate": animationDurationUpdateValue,
                     "animationEasingUpdate": animationEasingUpdateValue,
-                    "animationDelayUpdate": animationDelayUpdateValue
+                    "animationDelayUpdate": animationDelayUpdateValue,
+                    "tooltip": tooltipValue
                 ]
                 
                 expect(gaugeSerie.jsonString).to(equal(resultDic.jsonString))
@@ -401,7 +347,8 @@ class GaugeSerieSpec: QuickSpec {
                     .animationDelay(animationDelayValue),
                     .animationDurationUpdate(animationDurationUpdateValue),
                     .animationEasingUpdate(animationEasingUpdateValue),
-                    .animationDelayUpdate(animationDelayUpdateValue)
+                    .animationDelayUpdate(animationDelayUpdateValue),
+                    .tooltip(tooltipValue)
                 )
                 
                 expect(gaugeSerieByEnums.jsonString).to(equal(gaugeSerie.jsonString))

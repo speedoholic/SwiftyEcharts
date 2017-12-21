@@ -218,5 +218,127 @@ class LegendSpec: QuickSpec {
                 expect(legendByEnums.jsonString).to(equal(legend.jsonString))
             }
         }
+        
+        context("For the actions of Legend") {
+            describe("For LegendSelect") { 
+                let typeValue = EchartsActionType.legendSelect
+                let nameValue = "legendSelectName"
+                
+                let legendSelect = LegendSelect()
+                legendSelect.name = nameValue
+                
+                it("needs to check the typeValue") {
+                    expect(legendSelect.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "name": nameValue
+                    ]
+                    
+                    expect(legendSelect.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let legendSelectByEnums = LegendSelect(
+                        .name(nameValue)
+                    )
+                    
+                    expect(legendSelectByEnums.jsonString).to(equal(legendSelect.jsonString))
+                }
+            }
+            
+            describe("For LegendUnSelect") {
+                let typeValue = EchartsActionType.legendUnSelect
+                let nameValue = "legendUnSelectName"
+                
+                let legendUnSelect = LegendUnSelect()
+                legendUnSelect.name = nameValue
+                
+                it("needs to check the typeValue") {
+                    expect(legendUnSelect.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "name": nameValue
+                    ]
+                    
+                    expect(legendUnSelect.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let legendUnSelectByEnums = LegendUnSelect(
+                        .name(nameValue)
+                    )
+                    
+                    expect(legendUnSelectByEnums.jsonString).to(equal(legendUnSelect.jsonString))
+                }
+            }
+            
+            describe("For LegendToggleSelect") {
+                let typeValue = EchartsActionType.legendToggleSelect
+                let nameValue = "legendToggleSelectName"
+                
+                let legendToggleSelect = LegendToggleSelect()
+                legendToggleSelect.name = nameValue
+                
+                it("needs to check the typeValue") {
+                    expect(legendToggleSelect.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "name": nameValue
+                    ]
+                    
+                    expect(legendToggleSelect.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let legendToggleSelectByEnums = LegendToggleSelect(
+                        .name(nameValue)
+                    )
+                    
+                    expect(legendToggleSelectByEnums.jsonString).to(equal(legendToggleSelect.jsonString))
+                }
+            }
+            
+            describe("For LegendScroll") {
+                let typeValue = EchartsActionType.legendScroll
+                let scrollDataIndexValue = 72374832
+                let legendIdValue = "legendScrollViewLegendId"
+                
+                let legendScroll = LegendScroll()
+                legendScroll.scrollDataIndex = scrollDataIndexValue
+                legendScroll.legendId = legendIdValue
+                
+                it("needs to check the type value") {
+                    expect(legendScroll.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "scrollDataIndex": scrollDataIndexValue,
+                        "legendId": legendIdValue
+                    ]
+                    
+                    expect(legendScroll.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable"){
+                    let legendScrollByEnums = LegendScroll(
+                        .scrollDataIndex(scrollDataIndexValue),
+                        .legendId(legendIdValue)
+                    )
+                    
+                    expect(legendScrollByEnums.jsonString).to(equal(legendScroll.jsonString))
+                }
+            }
+        }
     }
 }

@@ -7,11 +7,13 @@
     <script src="js/echarts.min.js"></script>
     <script src="js/china.js"></script>
     <script src="js/world.js"></script>
+    <script src="js/dataTool.js"></script>
     <script type="text/javascript">
         var option;
         var myChart;
         var ecConfig;
         
+        var excludeStrs = ['close', 'open', 'HTMLElement', 'CSS', 'CSSRule', 'WebGLRenderingContext', 'SVGElement', 'AnalyserNode', 'AudioNode', 'Uint8Array']
         // Json string to object
         function preTask(obj) {
             var result;
@@ -32,6 +34,9 @@
                     return result;
                 }
             } else if(typeof(obj) == 'string'){
+                if(excludeStrs.includes(obj)) {
+                    return obj;
+                }
                 try {
                     if(typeof(eval(obj)) == 'function'){
                         return eval(obj);
@@ -97,6 +102,35 @@
             newOption = preTask(newOption);
             
             myChart.setOption(newOption, notMerge, lazyUpdate, silent);
+        }
+    
+        // Events
+        function echartViewEvent(param) {
+            //alert("echartViewEvent: " + param);
+            var seen = [];
+            var jsonString = JSON.stringify(param, function(key, val) {
+                if (val != null && typeof val == "object") {
+                    if (seen.indexOf(val) >= 0) {
+                        return;
+                    }
+                    seen.push(val);
+                }
+                return val;
+            });
+            eval("window.webkit.messageHandlers." + param.type + ".postMessage(" + jsonString + ")");
+        }
+        function addEchartEventHandler(eventName) {
+            //alert("myChart.on: " + myChart.on);
+            myChart.on(eventName, echartViewEvent);
+        }
+        function removeEchartEventHandler(name) {
+            myChart.off(name, echartViewEvent);
+        }
+    
+        // Action
+        function dispatchAction(param) {
+            alert("dispatchAction: " + param);
+            myChart.dispatchAction(param);
         }
     </script>
 </head>

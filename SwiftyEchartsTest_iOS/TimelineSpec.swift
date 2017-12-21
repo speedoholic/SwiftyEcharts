@@ -443,5 +443,65 @@ class TimelineSpec: QuickSpec {
                 expect(timelineByEnums.jsonString).to(equal(timeline.jsonString))
             }
         }
+        
+        context("For the action of Timeline") {
+            describe("For TimelineChangeAction") {
+                let typeValue = EchartsActionType.timelineChange
+                let currentIndexValue = 256
+                
+                let timelineChangeAction = TimelineChangeAction()
+                timelineChangeAction.currentIndex = currentIndexValue
+                
+                it("needs to check the type value") {
+                    expect(timelineChangeAction.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "currentIndex": currentIndexValue
+                    ]
+                    
+                    expect(timelineChangeAction.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let timelineChangeActionByEnums = TimelineChangeAction(
+                        .currentIndex(currentIndexValue)
+                    )
+                    
+                    expect(timelineChangeActionByEnums.jsonString).to(equal(timelineChangeAction.jsonString))
+                }
+            }
+            
+            describe("For TimelinePlayChangeAction") {
+                let typeValue = EchartsActionType.timelinePlayChange
+                let playStateValue = false
+                
+                let timelinePlayChangeAction = TimelinePlayChangeAction()
+                timelinePlayChangeAction.playState = playStateValue
+                
+                it("needs to check the type value") {
+                    expect(timelinePlayChangeAction.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "playState": playStateValue
+                    ]
+                    
+                    expect(timelinePlayChangeAction.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let timelinePlayChangeActionByEnums = TimelinePlayChangeAction(
+                        .playState(playStateValue)
+                    )
+                    
+                    expect(timelinePlayChangeActionByEnums.jsonString).to(equal(timelinePlayChangeAction.jsonString))
+                }
+            }
+        }
     }
 }

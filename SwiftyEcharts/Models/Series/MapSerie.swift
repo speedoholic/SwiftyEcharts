@@ -17,6 +17,23 @@
 /// 示例： http://echarts.baidu.com/gallery/editor.html?c=doc-example/map-example
 public final class MapSerie: Serie, Zable, Animatable {
     
+    /// 多个拥有相同地图类型的系列会使用同一个地图展现，如果多个系列都在同一个区域有值，ECharts 会对这些值统计得到一个数据。这个配置项就是用于配置统计的方式，目前有：
+    ///
+    /// - 'sum' 取和。
+    /// - 'average' 取平均值。
+    /// - 'max' 取最大值。
+    /// - 'min' 取最小值。
+    public enum MapValueCalculation: String, Jsonable {
+        case average = "average"
+        case max = "max"
+        case min = "min"
+        case sum = "sum"
+        
+        public var jsonString: String {
+            return self.rawValue.jsonString
+        }
+    }
+    
     /// 滚轮缩放的极限控制，通过min, max最小和最大的缩放值，默认的缩放为1。
     public final class ScaleLimit {
         /// 最小的缩放值
@@ -194,7 +211,7 @@ public final class MapSerie: Serie, Zable, Animatable {
     /// - 'average' 取平均值。
     /// - 'max' 取最大值。
     /// - 'min' 取最小值。
-    public var mapValueCalculation: String?
+    public var mapValueCalculation: MapValueCalculation?
     /// 在图例相应区域显示图例的颜色标识（系列标识的小圆点），存在 legend 组件时生效。
     public var showLegendSymbol: Bool?
     /// 地图系列中的数据内容数组。数组项可以为单个数值，如：
@@ -323,7 +340,7 @@ extension MapSerie.Data: Mappable {
 
 extension MapSerie: Enumable {
     public enum Enums {
-        case name(String), map(String), roam(Roam), center(Point), aspectScale(Float), zoom(Float), scaleLimit(ScaleLimit), nameMap([String: Jsonable]), selectedMode(SelectedMode), label(EmphasisLabel), itemStyle(ItemStyle), zlevel(Float), z(Float), left(Position), top(Position), right(Position), bottom(Position), layoutCenter(Position), layoutSize(LengthValue), geoIndex(UInt8), mapValueCalculation(String), showLegendSymbol(Bool), data([Jsonable]), markPoint(MarkPoint), markLine(MarkLine), markArea(MarkArea), silent(Bool), animation(Bool), animationThreshold(Float), animationDuration(Time), animationEasing(EasingFunction), animationDelay(Time), animationDurationUpdate(Time), animationEasingUpdate(EasingFunction), animationDelayUpdate(Time)
+        case name(String), map(String), roam(Roam), center(Point), aspectScale(Float), zoom(Float), scaleLimit(ScaleLimit), nameMap([String: Jsonable]), selectedMode(SelectedMode), label(EmphasisLabel), itemStyle(ItemStyle), zlevel(Float), z(Float), left(Position), top(Position), right(Position), bottom(Position), layoutCenter(Position), layoutSize(LengthValue), geoIndex(UInt8), mapValueCalculation(MapValueCalculation), showLegendSymbol(Bool), data([Jsonable]), markPoint(MarkPoint), markLine(MarkLine), markArea(MarkArea), silent(Bool), animation(Bool), animationThreshold(Float), animationDuration(Time), animationEasing(EasingFunction), animationDelay(Time), animationDurationUpdate(Time), animationEasingUpdate(EasingFunction), animationDelayUpdate(Time)
     }
     
     public typealias ContentEnum = Enums
@@ -445,5 +462,168 @@ extension MapSerie: Mappable {
         map["animationDurationUpdate"] = animationDurationUpdate
         map["animationEasingUpdate"] = animationEasingUpdate
         map["animationDelayUpdate"] = animationDelayUpdate
+    }
+}
+
+// MARK: - Actions
+/// 选中指定的地图区域。
+public final class MapSelectAction: EchartsAction {
+    public var type: EchartsActionType {
+        return .mapSelect
+    }
+    
+    /// 可选，系列 index，可以是一个数组指定多个系列
+    public var seriesIndex: OneOrMore<Int>?
+    /// 可选，系列名称，可以是一个数组指定多个系列
+    public var seriesName: OneOrMore<String>?
+    /// 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
+    public var dataIndex: Int?
+    /// 可选，数据名称，在有 dataIndex 的时候忽略
+    public var name: String?
+}
+
+extension MapSelectAction: Enumable {
+    public enum Enums {
+        case seriesIndex(Int), seriesIndexes([Int]), seriesName(String), seriesNames([String]), dataIndex(Int), name(String)
+    }
+    
+    public typealias ContentEnum = Enums
+    
+    public convenience init(_ elements: Enums...) {
+        self.init()
+        for ele in elements {
+            switch ele {
+            case let .seriesIndex(seriesIndex):
+                self.seriesIndex = OneOrMore(one: seriesIndex)
+            case let .seriesIndexes(seriesIndexes):
+                self.seriesIndex = OneOrMore(more: seriesIndexes)
+            case let .seriesName(seriesName):
+                self.seriesName = OneOrMore(one: seriesName)
+            case let .seriesNames(seriesNames):
+                self.seriesName = OneOrMore(more: seriesNames)
+            case let .dataIndex(dataIndex):
+                self.dataIndex = dataIndex
+            case let .name(name):
+                self.name = name
+            }
+        }
+    }
+}
+
+extension MapSelectAction: Mappable {
+    public func mapping(_ map: Mapper) {
+        map["type"] = type
+        map["seriesIndex"] = seriesIndex
+        map["seriesName"] = seriesName
+        map["dataIndex"] = dataIndex
+        map["name"] = name
+    }
+}
+
+/// 取消选中指定的地图区域。
+public final class MapUnSelectAction: EchartsAction {
+    public var type: EchartsActionType {
+        return .mapUnSelect
+    }
+    
+    /// 可选，系列 index，可以是一个数组指定多个系列
+    public var seriesIndex: OneOrMore<Int>?
+    /// 可选，系列名称，可以是一个数组指定多个系列
+    public var seriesName: OneOrMore<String>?
+    /// 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
+    public var dataIndex: Int?
+    /// 可选，数据名称，在有 dataIndex 的时候忽略
+    public var name: String?
+}
+
+extension MapUnSelectAction: Enumable {
+    public enum Enums {
+        case seriesIndex(Int), seriesIndexes([Int]), seriesName(String), seriesNames([String]), dataIndex(Int), name(String)
+    }
+    
+    public typealias ContentEnum = Enums
+    
+    public convenience init(_ elements: Enums...) {
+        self.init()
+        for ele in elements {
+            switch ele {
+            case let .seriesIndex(seriesIndex):
+                self.seriesIndex = OneOrMore(one: seriesIndex)
+            case let .seriesIndexes(seriesIndexes):
+                self.seriesIndex = OneOrMore(more: seriesIndexes)
+            case let .seriesName(seriesName):
+                self.seriesName = OneOrMore(one: seriesName)
+            case let .seriesNames(seriesNames):
+                self.seriesName = OneOrMore(more: seriesNames)
+            case let .dataIndex(dataIndex):
+                self.dataIndex = dataIndex
+            case let .name(name):
+                self.name = name
+            }
+        }
+    }
+}
+
+extension MapUnSelectAction: Mappable {
+    public func mapping(_ map: Mapper) {
+        map["type"] = type
+        map["seriesIndex"] = seriesIndex
+        map["seriesName"] = seriesName
+        map["dataIndex"] = dataIndex
+        map["name"] = name
+    }
+}
+
+/// 切换指定的地图区域选中状态。
+public final class MapToggleSelectAction: EchartsAction {
+    public var type: EchartsActionType {
+        return .mapToggleSelect
+    }
+    
+    /// 可选，系列 index，可以是一个数组指定多个系列
+    public var seriesIndex: OneOrMore<Int>?
+    /// 可选，系列名称，可以是一个数组指定多个系列
+    public var seriesName: OneOrMore<String>?
+    /// 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
+    public var dataIndex: Int?
+    /// 可选，数据名称，在有 dataIndex 的时候忽略
+    public var name: String?
+}
+
+extension MapToggleSelectAction: Enumable {
+    public enum Enums {
+        case seriesIndex(Int), seriesIndexes([Int]), seriesName(String), seriesNames([String]), dataIndex(Int), name(String)
+    }
+    
+    public typealias ContentEnum = Enums
+    
+    public convenience init(_ elements: Enums...) {
+        self.init()
+        for ele in elements {
+            switch ele {
+            case let .seriesIndex(seriesIndex):
+                self.seriesIndex = OneOrMore(one: seriesIndex)
+            case let .seriesIndexes(seriesIndexes):
+                self.seriesIndex = OneOrMore(more: seriesIndexes)
+            case let .seriesName(seriesName):
+                self.seriesName = OneOrMore(one: seriesName)
+            case let .seriesNames(seriesNames):
+                self.seriesName = OneOrMore(more: seriesNames)
+            case let .dataIndex(dataIndex):
+                self.dataIndex = dataIndex
+            case let .name(name):
+                self.name = name
+            }
+        }
+    }
+}
+
+extension MapToggleSelectAction: Mappable {
+    public func mapping(_ map: Mapper) {
+        map["type"] = type
+        map["seriesIndex"] = seriesIndex
+        map["seriesName"] = seriesName
+        map["dataIndex"] = dataIndex
+        map["name"] = name
     }
 }

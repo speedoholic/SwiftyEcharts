@@ -5,7 +5,6 @@
 //  Created by Pluto Y on 25/11/2016.
 //  Copyright © 2016 com.pluto-y. All rights reserved.
 //
-import UIKit
 import WebKit
 
 open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
@@ -15,10 +14,10 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
     fileprivate var htmlContents: String = ""
     fileprivate var bundlePath: String = ""
     fileprivate var loadFinsih = false
+    fileprivate var eventWithHandlers: [EchartsEvent: ([String: Any]) -> Void] = [:]
 
     public convenience init() {
         self.init(frame: CGRect.zero, configuration: WKWebViewConfiguration())
-        initViews()
     }
     
     public override init(frame: CGRect, configuration: WKWebViewConfiguration) {
@@ -29,6 +28,10 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initViews()
+    }
+    
+    deinit {
+        self.configuration.userContentController.removeAllUserScripts()
     }
     
     // MAKR: - Public Functions
@@ -67,17 +70,20 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
     /// 重置图表
     public func reset() {
         loadFinsih = false
-        loadHTMLString(htmlContents, baseURL: URL(fileURLWithPath: bundlePath))
+        loadHTMLString(htmlContents, baseURL: URL(fileURLWithPath: (bundlePath as NSString).deletingLastPathComponent))
     }
     
     open func loadEcharts() {
-//        if !loadFinsih && !self.resizeDivFinish { // 如果还没页面加载完则等待 0.05 秒后刷新
-//            dispatch_after(UInt64(Double(NSEC_PER_SEC) * 0.05), dispatch_get_main_queue(), { [unowned self] in 
-//                self.loadEcharts()
-//            })
-//            return
-//        }
-        loadHTMLString(htmlContents, baseURL: URL(fileURLWithPath: bundlePath))
+        #if os(iOS)
+            if #available(iOS 9.0, *) {
+                loadHTMLString(htmlContents, baseURL: URL(fileURLWithPath: bundlePath))
+            } else if #available(iOS 8.0, *) {
+                loadEchartsForBugllyOfWKEchartsView()
+            }
+        #elseif os(OSX)
+            loadEchartsForBugllyOfWKEchartsView()
+        #endif
+        
     }
     
     open func loadEcharts(with option: Option) {
@@ -108,22 +114,48 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
         self.callJsMethod("refreshEcharts('\(preDealWithParams("\(optionJson)"))', \(notMerge), \(lazyUpdate), \(silent))")
     }
     
+    // MARK: - Event
+    public func addListener(for event: EchartsEvent, with handler: @escaping ([String: Any]) -> Void) {
+        self.configuration.userContentController.removeScriptMessageHandler(forName: event.rawValue)
+        self.configuration.userContentController.add(self, name: event.rawValue)
+        eventWithHandlers[event] = handler
+        self.callJsMethod("addEchartEventHandler('\(event.rawValue)')")
+    }
+    
+    public func removeListener(for event: EchartsEvent) {
+        self.configuration.userContentController.removeScriptMessageHandler(forName: event.rawValue)
+        eventWithHandlers[event] = nil
+        self.callJsMethod("removeEchartEventHandler('\(event.rawValue)')")
+    }
+    
+    public func removeAllListeners() {
+        for (event, _) in eventWithHandlers {
+            self.configuration.userContentController.removeScriptMessageHandler(forName: event.rawValue)
+            self.callJsMethod("removeEchartEventHandler('\(event.rawValue)')")
+        }
+        eventWithHandlers.removeAll()
+    }
+    
+    
     // MARK: - Private Functions
     fileprivate func initViews() {
         var bundle = Bundle.main
-        if let frameworkPath = Bundle.main.path(forResource: "SwiftyEcharts", ofType: "framework", inDirectory: "Frameworks"), let frameworkBundle = Bundle(path: frameworkPath) {
+        if let frameworkBundle = Bundle(identifier: "com.pluto-y.SwiftyEcharts") {
             bundle = frameworkBundle
         }
         
-        let urlPath = bundle.path(forResource: "echarts", ofType: "html")
-        guard let path = urlPath else {
+        if let urlPath = bundle.path(forResource: "echarts", ofType: "html") {
+            bundlePath = urlPath
+        } else if let urlPath = bundle.path(forResource: "echarts", ofType: "html", inDirectory: "SwiftyEcharts.bundle") {
+            bundlePath = urlPath
+        } else {
             printError("ERROR: Can not find the echarts.html, please contact the developer")
             return
         }
         
-        bundlePath = path
         
-        guard let htmlStr = try? String(contentsOfFile: path) else {
+        
+        guard let htmlStr = try? String(contentsOfFile: bundlePath) else {
             return
         }
         printInfo("Info: the content of the echcart.html: \(htmlStr)")
@@ -145,14 +177,74 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
             userContentController.addUserScript(newScript)
         }
         
-        userContentController.add(self, name: "wkechartview")
+//        if let jsPath = bundle.path(forResource: "echarts.min", ofType: "js", inDirectory: "js"), let js = try? String(contentsOfFile: jsPath) {
+//            let newScript = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+//            userContentController.addUserScript(newScript)
+//        }
         
-        scrollView.isScrollEnabled = false
-        scrollView.bounces = false
+        userContentController.add(self, name: "wkechartview")
+#if os(OSX)
+#elseif os(iOS)
+    scrollView.isScrollEnabled = false
+    scrollView.bounces = false
+#endif
         uiDelegate = self
         navigationDelegate = self
         reset()
         
+    }
+    
+    /// 在 iOS8 以及在 OS X 的加载 Echarts 的方法
+    private func loadEchartsForBugllyOfWKEchartsView() {
+        do {
+            let url = URL(fileURLWithPath: bundlePath)
+            let fileURL = try fileURLForBuggyWKWebView8(fileURL: url)
+            load(URLRequest(url: fileURL))
+        } catch let error as NSError {
+            print("Error: " + error.debugDescription)
+        }
+    }
+    
+    /// 解决 iOS8 以及在 OS X 上没办法加载本地内容以及资源文件的情况
+    private func fileURLForBuggyWKWebView8(fileURL: URL) throws -> URL {
+        // Some safety checks
+        if !fileURL.isFileURL {
+            throw NSError(
+                domain: "BuggyWKWebViewDomain",
+                code: 1001,
+                userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("URL must be a file URL.", comment:"")])
+        }
+        let _ = try! fileURL.checkResourceIsReachable()
+        
+        let absolutePath = fileURL.absoluteString
+        let dirPath = (absolutePath as NSString).deletingLastPathComponent
+        let dirUrl = URL(fileURLWithPath: dirPath)
+        let jsUrl = dirUrl.appendingPathComponent("js")
+        
+        // Create "/temp/www" directory
+        let fm = FileManager.default
+        let tmpDirURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("www")
+        try! fm.createDirectory(at: tmpDirURL, withIntermediateDirectories: true, attributes: nil)
+        let tmpJsDirUrl = tmpDirURL.appendingPathComponent("js")
+        try! fm.createDirectory(at: tmpJsDirUrl, withIntermediateDirectories: true, attributes: nil)
+        
+        let jsPath = jsUrl.absoluteString.replacingOccurrences(of: "file:", with: "")
+        if let files = try? fm.contentsOfDirectory(atPath: jsPath) {
+            for file in files {
+                let jsFileUrl = URL(fileURLWithPath: jsPath + file)
+                let dstURL = tmpJsDirUrl.appendingPathComponent(jsFileUrl.lastPathComponent)
+                let _ = try? fm.removeItem(at: dstURL)
+                try! fm.copyItem(at: jsFileUrl, to: dstURL)
+            }
+        }
+        
+        // Now copy given file to the temp directory
+        let dstURL = tmpDirURL.appendingPathComponent(fileURL.lastPathComponent)
+        let _ = try? fm.removeItem(at: dstURL)
+        try! fm.copyItem(at: fileURL, to: dstURL)
+        
+        // Files in "/temp/www" load flawlesly :)
+        return dstURL
     }
     
     fileprivate func callJsMethod(_ jsString: String, completionHandler: ((Any?, Error?) -> Swift.Void)? = nil) {
@@ -179,6 +271,9 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
     // MARK: - Delegate
     // MARK: UIWebViewDelegate
     open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("echarts") { [weak self] (result, error) in
+            Swift.print(result)
+        }
         webView.evaluateJavaScript("document.readyState") { [weak self] (result, error) in
             guard let strongSelf = self else { return }
             guard let result = result as? String, result == "complete" else {
@@ -208,6 +303,14 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
             }
             
             strongSelf.callJsMethod("loadEcharts('\(strongSelf.preDealWithParams("\(optionJson)"))')")
+            let delayTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                // 避免过早添加监听事件
+                for (event, _) in strongSelf.eventWithHandlers {
+                    printInfo("-addEchartEventHandler('\(event)')")
+                    strongSelf.callJsMethod("addEchartEventHandler('\(event)')")
+                }
+            }
         }
     }
     
@@ -218,7 +321,17 @@ open class EchartsView: WKWebView, WKNavigationDelegate, WKUIDelegate, WKScriptM
     
     // MARK: WKScriptMessageHandler
     open func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("name:\(message.name), body:\(message.body)")
+        Swift.print("name:\(message.name), body:\(message.body)")
+        guard let event = EchartsEvent(rawValue: message.name), let handler = eventWithHandlers[event] else { return }
+        handler(message.body as! [String: AnyObject])
     }
+}
 
+
+extension EchartsView {
+    public func dispatchAction<T: EchartsAction>(_ action: T) {
+        Swift.print("dispatchAction(\(action.jsonString))")
+        
+        callJsMethod("dispatchAction(\(action.jsonString))")
+    }
 }

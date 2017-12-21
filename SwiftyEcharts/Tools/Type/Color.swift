@@ -17,8 +17,19 @@ public protocol Colorful {
 /// - rgba: 以RGBA形式创建的颜色
 /// - rgb: 以RGB形式创建的颜色
 /// - hexColor: 以16进制字符串创建的颜色， 并且只能为以 '#' 开头 3位16进制数或者6位16进制数
+/// - array: 颜色的数组
+/// - image: 以图片形式来展示颜色
+/// - linearGradient: 线性渐变的颜色
+/// - radialGradient: 圆形内外的渐变的颜色
+/// - others: 其他一些颜色常量
 public enum Color: Jsonable {
     
+    /// 图片平铺的方式
+    ///
+    /// - repeatAll: 以x轴和y轴的方式平铺
+    /// - repeatX: 以x轴的方式平铺
+    /// - repeatY: 以x轴的方式平铺
+    /// - noRepeat: 不平铺
     public enum ImageRepeat: String, Jsonable {
         case repeatAll = "repeat"
         case repeatX = "repeat-x"
@@ -33,11 +44,12 @@ public enum Color: Jsonable {
     case rgba(Int, Int, Int, Float)
     case rgb(Int, Int, Int)
     case hexColor(String)
+    case function(Function)
     case array([Color])
     case image(String, ImageRepeat)
     case linearGradient(Float, Float, Float, Float, [GradientColorElement], Bool)
     case radialGradient(Float, Float, Float, [GradientColorElement], Bool)
-    case auto, red, blue, green, yellow, transparent
+    case auto, red, blue, green, yellow, transparent, black
     
     /// 用来校验 rgb 或者 rgba 是否符合 Echarts 颜色的限制
     ///
@@ -89,8 +101,8 @@ public enum Color: Jsonable {
             return false
         }
         
-        var rgbValue: Int = 0
-        return Scanner(string: cString).scanInt(&rgbValue)
+        var rgbValue: UInt64 = 0
+        return Scanner(string: cString).scanHexInt64(&rgbValue)
     }
     
     public var jsonString: String {
@@ -110,6 +122,8 @@ public enum Color: Jsonable {
                 return "null".jsonString
             }
             return "\(hexColor)".jsonString
+        case let .function(function):
+            return function.jsonString
         case .auto:
             return "auto".jsonString
         case .red:
@@ -122,6 +136,8 @@ public enum Color: Jsonable {
             return "green".jsonString
         case .transparent:
             return "transparent".jsonString
+        case .black:
+            return "black".jsonString
         case let .linearGradient(x0, y0, x2, y2, colors, absolute):
             var result = "null"
             if colors.count > 0 {

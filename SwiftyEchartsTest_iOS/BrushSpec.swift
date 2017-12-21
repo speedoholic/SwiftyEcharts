@@ -143,6 +143,7 @@ class BrushSpec: QuickSpec {
             let removeOnClickValue: Float = 0.0
             let inBrushValue = "inBrushValue"
             let outBrushValue = "outOfBrushValue"
+            let zValue: Float = 8472.237462378
             
             let brush = Brush()
             brush.toolbox = toolboxValue
@@ -160,6 +161,7 @@ class BrushSpec: QuickSpec {
             brush.removeOnClick = removeOnClickValue
             brush.inBrush = inBrushValue
             brush.outOfBrush = outBrushValue
+            brush.z = zValue
             
             it("needs to check the jsonString") {
                 let resultDic: [String: Jsonable] = [
@@ -177,7 +179,8 @@ class BrushSpec: QuickSpec {
                     "throttleDelay": throttleDelayValue,
                     "removeOnClick": removeOnClickValue,
                     "inBrush": inBrushValue,
-                    "outOfBrush": outBrushValue
+                    "outOfBrush": outBrushValue,
+                    "z": zValue
                 ]
 
                 expect(brush.jsonString).to(equal(resultDic.jsonString))
@@ -199,10 +202,77 @@ class BrushSpec: QuickSpec {
                     .throttleDelay(throttleDelayValue),
                     .removeOnClick(removeOnClickValue),
                     .inBrush(inBrushValue),
-                    .outOfBrush(outBrushValue)
+                    .outOfBrush(outBrushValue),
+                    .z(zValue)
                 )
                 
                 expect(brushByEnums.jsonString).to(equal(brush.jsonString))
+            }
+        }
+        
+        context("For the actions of Brush") {
+            let geoIndexValue = 82347
+            let brushTypeValue: SwiftyEcharts.Brush.`Type` = .lineX
+            let rangeValue: [Jsonable] = [[10, 20], [50, 100]]
+            let coordRangeValue: [Jsonable] = [10, 100]
+            
+            let area = BrushAction.Area()
+            area.geoIndex = geoIndexValue
+            area.brushType = brushTypeValue
+            area.range = rangeValue
+            area.coordRange = coordRangeValue
+            
+            describe("For the BrushAction.Area") {
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "geoIndex": geoIndexValue,
+                        "brushType": brushTypeValue,
+                        "range": rangeValue,
+                        "coordRange": coordRangeValue
+                    ]
+                    
+                    expect(area.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let areaByEnums = BrushAction.Area(
+                        .geoIndex(geoIndexValue),
+                        .brushType(brushTypeValue),
+                        .range(rangeValue),
+                        .coordRange(coordRangeValue)
+                    )
+                    
+                    expect(areaByEnums.jsonString).to(equal(area.jsonString))
+                }
+            }
+            
+            describe("For the BrushAction") {
+                let typeValue = EchartsActionType.brush
+                let areaValue = [area]
+                
+                let brushAction = BrushAction()
+                brushAction.areas = areaValue
+                
+                it("needs to check the type value") {
+                    expect(brushAction.type.jsonString).to(equal(typeValue.jsonString))
+                }
+                
+                it("needs to check the jsonString") {
+                    let resultDic: [String: Jsonable] = [
+                        "type": typeValue,
+                        "areas": areaValue
+                    ]
+                    
+                    expect(brushAction.jsonString).to(equal(resultDic.jsonString))
+                }
+                
+                it("needs to check the Enumable") {
+                    let brushActionByEnums = BrushAction(
+                        .areas(areaValue)
+                    )
+                    
+                    expect(brushActionByEnums.jsonString).to(equal(brushAction.jsonString))
+                }
             }
         }
     }

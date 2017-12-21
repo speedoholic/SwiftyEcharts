@@ -37,7 +37,7 @@ class PositionSpec: QuickSpec {
             let lengthValue1 = 10%
             let lengthValue2 = 87.5
             let point: Point = [lengthValue1, lengthValue2]
-            let functionString = "function (pt) {return [pt[0], '10%'];}"
+            let function: Function = "function (pt) {return [pt[0], '10%'];}"
             
             let autoPosition = Position.auto
             let leftPosition = Position.left
@@ -62,9 +62,13 @@ class PositionSpec: QuickSpec {
             let valuePosition1 = Position.value(lengthValue1)
             let valuePosition2 = Position.value(lengthValue2)
             let pointPosition = Position.point(point)
-            let functionPosition = Position.function(functionString)
+            let functionPosition = Position.function(function)
             
-            it(" needs to check the jsonString ") {
+            beforeEach {
+                JsCache.removeAll()
+            }
+            
+            it("needs to check the jsonString") {
                 expect(autoPosition.jsonString).to(equal(autoString.jsonString))
                 expect(leftPosition.jsonString).to(equal(leftString.jsonString))
                 expect(centerPosition.jsonString).to(equal(centerString.jsonString))
@@ -89,10 +93,17 @@ class PositionSpec: QuickSpec {
                 expect(valuePosition2.jsonString).to(equal(lengthValue2.jsonString))
                 expect(pointPosition.jsonString).to(equal(point.jsonString))
                 
-                JsCache.removeAll()
-                expect(functionPosition.jsonString).to(equal("\(FunctionPrefix)0".jsonString))
-                expect(JsCache.allJsStrings().count).to(equal(1))
-                expect(JsCache.allJsStrings().first).to(equal("var \(FunctionPrefix)0 = \(functionString);"))
+                expect(functionPosition.jsonString).to(equal(function.jsonString))
+            }
+            
+            it("needs to check the FloatLiteralConvertible and IntegerLiteralConvertible") {
+                let integerLiteralPosition: Position = 255
+                let integerPosition = Position.value(255)
+                let floatLiteralPosition: Position = 255.0
+                let floatPosition = Position.value(255.0)
+                
+                expect(integerLiteralPosition.jsonString).to(equal(integerPosition.jsonString))
+                expect(floatLiteralPosition.jsonString).to(equal(floatPosition.jsonString))
             }
         }
         
@@ -105,7 +116,7 @@ class PositionSpec: QuickSpec {
             let middleLocation = Location.middle
             let endLocation = Location.end
             
-            it(" needs to check the jsonString ") {
+            it("needs to check the jsonString") {
                 expect(startLocation.jsonString).to(equal(startString.jsonString))
                 expect(middleLocation.jsonString).to(equal(middleString.jsonString))
                 expect(endLocation.jsonString).to(equal(endString.jsonString))
