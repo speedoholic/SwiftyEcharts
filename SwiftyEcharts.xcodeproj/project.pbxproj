@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BCD608420721D040075A85A /* npmdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BCD608320721D040075A85A /* npmdata.json */; };
 		529DEFEB1E6EE9F400E70938 /* FunnelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529DEFEA1E6EE9F400E70938 /* FunnelController.swift */; };
 		540898A81E53F6F300A89BB0 /* Percent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540898A71E53F6F300A89BB0 /* Percent.swift */; };
 		540898AA1E53F71E00A89BB0 /* LengthValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540898A91E53F71E00A89BB0 /* LengthValue.swift */; };
@@ -663,6 +664,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2BCD608320721D040075A85A /* npmdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = npmdata.json; sourceTree = "<group>"; };
 		529DEFEA1E6EE9F400E70938 /* FunnelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunnelController.swift; sourceTree = "<group>"; };
 		540898A71E53F6F300A89BB0 /* Percent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Percent.swift; sourceTree = "<group>"; };
 		540898A91E53F71E00A89BB0 /* LengthValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LengthValue.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1088,6 +1090,7 @@
 				6F12F5661F6CCFE70042793D /* stock-DJI.json */,
 				6F2904B21FA769C3009B5562 /* webkit-dep.json */,
 				6F22436E1FA8A268000888C5 /* npmdepgraph.min10.json */,
+				2BCD608320721D040075A85A /* npmdata.json */,
 			);
 			path = DemoOptions;
 			sourceTree = "<group>";
@@ -1798,8 +1801,9 @@
 					};
 					6F9B70DC1DE808E600406B55 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = K63S3884G5;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					6FB48CAD1DEE9FF300137D13 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1881,6 +1885,7 @@
 				6F9DF5551E9BC37700577899 /* BeijingAQIDatas.plist in Resources */,
 				6F9B70EA1DE808E600406B55 /* LaunchScreen.storyboard in Resources */,
 				6FA85F311ED336E300C1DA58 /* hainan.json in Resources */,
+				2BCD608420721D040075A85A /* npmdata.json in Resources */,
 				6FA85F291ED336E300C1DA58 /* aomen.json in Resources */,
 				6F9B70E71DE808E600406B55 /* Assets.xcassets in Resources */,
 				6FE8C1DB1EB7806B007BE7F3 /* LineAirline.json in Resources */,
@@ -2653,13 +2658,16 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K63S3884G5;
 				INFOPLIST_FILE = iOS_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pluto-y.iOS-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.speed.iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG=1";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2673,13 +2681,16 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K63S3884G5;
 				INFOPLIST_FILE = iOS_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pluto-y.iOS-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.speed.iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

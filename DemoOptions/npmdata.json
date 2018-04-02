@@ -1,0 +1,36 @@
+{
+    "nodes": [
+            {
+                "color": "#4f19c7",
+                "label": "'jquery'",
+                "attributes": {},
+                "y": 0.26147,
+                "x": 0.36383,
+                "id": "jquery",
+                "size": 34.7252817
+            },
+            {
+                "color": "#c71969",
+                "label": "'backbone'",
+                "attributes": {},
+                "y": 0.7517,
+                "x": 0.2215,
+                "id": "backbone",
+                "size": 26.1554675
+            }
+    ],
+    "edges": [
+              {
+              "sourceID": "'jquery'",
+              "attributes": {},
+              "targetID": "'backbone'",
+              "size": 1
+              },
+              {
+              "sourceID": "'backbone'",
+              "attributes": {},
+              "targetID": "'jquery'",
+              "size": 1
+              }
+    ]
+}

@@ -148,7 +148,7 @@ extension Tooltip: Enumable {
 }
 
 extension Tooltip: Mappable {
-    public func mapping(map: Mapper) {
+    public func mapping(_ map: Mapper) {
         map["show"] = show
         map["showContent"] = showContent
         map["trigger"] = trigger

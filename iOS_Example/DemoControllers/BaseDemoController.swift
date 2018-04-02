@@ -30,17 +30,13 @@ class BaseDemoController: UIViewController, UITableViewDelegate, UITableViewData
         let width = self.view.frame.width
         let height = self.view.frame.height
         
-        menuTableView = UITableView(frame: CGRect(x: 0, y: 0, width: width, height: height - 300))
+        menuTableView = UITableView(frame: CGRect(x: 0, y: 0, width: width/4, height: height))
         menuTableView.delegate = self
         menuTableView.dataSource = self
         menuTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DemoCell")
         self.view.addSubview(menuTableView)
         
-        let line = UIView(frame: CGRect(x: 0, y: height - 300, width: width, height: 1))
-        line.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 245/255.0, alpha: 1.0)
-        self.view.addSubview(line)
-        
-        echartsView = EchartsView(frame: CGRect(x: 0, y: height - 299, width: width, height: 300))
+        echartsView = EchartsView(frame: CGRect(x: width/4, y: 0, width: width*3/4, height: height))
         self.view.addSubview(echartsView!)
         
         Mapper.ignoreNil = true
